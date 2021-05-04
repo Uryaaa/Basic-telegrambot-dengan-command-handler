@@ -1,0 +1,17 @@
+{
+  "name": "telemager",
+  "version": "1.0.0",
+  "description": "telebot test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alif Aldiansyah",
+  "license": "ISC",
+  "dependencies": {
+    "enmap": "^5.8.5",
+    "moment": "^2.29.1",
+    "nekos.life": "^2.0.7",
+    "node-telegram-bot-api": "^0.53.0"
+  }
+}
