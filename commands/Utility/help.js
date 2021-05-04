@@ -3,7 +3,7 @@ module.exports = {
     name: 'help',
     aliases: ['h'],
     category: 'utility',
-    utilisation: '{prefix}help <command name>',
+
 
     execute(client, message, args) {
         if (!args[0]) {
@@ -14,7 +14,7 @@ module.exports = {
         } else {
             const command = client.commands.get(args.join(" ").toLowerCase()) || message.client.commands.find(x => x.aliases && x.aliases.includes(args.join(" ").toLowerCase()));
 
-            if (!command) return message.channel.send(`${client.emotes.error} - I did not find this command !`);
+            if (!command) return client.sendMessage(message.chat.id, "Command tidak ditemukan");
 
             client.sendMessage(message.chat.id,`Nama : ${command.name}\nDeskripsi : ${command.description}`)
         };
