@@ -5,18 +5,17 @@ const {token} = require("./config.json");
 const client = new TelegramBot(token, {polling: true});
 
 client.commands = new Enmap();
-fs.readdir("./commands/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    // Checking file js
-    let props = require(`./commands/${file}`);
-    //command file name
-    let commandName = file.split(".")[0];
-    console.log(`Command tersedia : ${commandName}`);
-    client.commands.set(commandName, props);
-  });
-});
+
+    fs.readdirSync('./commands').forEach(dirs => {
+        const commands = fs.readdirSync(`./commands/${dirs}`).filter(files => files.endsWith('.js'));
+    
+        for (const file of commands) {
+            const command = require(`./commands/${dirs}/${file}`);
+            console.log(`Loading command ${file}`);
+            client.commands.set(command.name.toLowerCase(), command);
+        };
+    });
+
 const events = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 for (const file of events) {
     console.log(`memuat event ${file}`);
